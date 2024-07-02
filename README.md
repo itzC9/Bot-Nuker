@@ -20,9 +20,9 @@ apt update && apt upgrade
 
 pkg install python git
 
-git clone https://github.com/Sigma-cc/Discord-Nuke-Bot
+git clone https://github.com/itzC9/Bot-Nuker/
 
-cd Discord-Nuke-Bot
+cd Bot-Nuker
 
 python -m pip install -r requirements.txt
 
@@ -30,15 +30,15 @@ python nuke-bot.py
 ```
 **[Subsequent launches]**
 ```console
-cd Discord-Nuke-Bot
+cd Bot-Nuker
 
 python nuke-bot.py
 ```
 ## Linux / Windows
 ```console
-git clone https://github.com/Sigma-cc/Discord-Nuke-Bot
+git clone https://github.com/itzC9/Bot-Nuker/
 
-cd Discord-Nuke-Bot
+cd Bot-Nuker
 
 python -m pip install -r requirements.txt
 
