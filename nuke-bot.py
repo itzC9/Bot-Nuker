@@ -21,7 +21,7 @@ baner = f'''
 {r}|  \| | | | | |/ / _ {m}\  _ \ / _ \| __|
 {r}| |\  | |_| |   <  __{m}/ |_) | (_) | |_ 
 {r}|_| \_|\__,_|_|\_\___{m}|____/ \___/ \__|
-{y}Made by: {g}https://github.com/Sigma-cc'''
+{y}Made by: {g}https://github.com/itzC9/Bot-Nuker/'''
 
 
 
@@ -65,12 +65,25 @@ async def create_roles(guild, name):
         except:
             continue
     return created
-
-async def create_voice_channels(guild, name):
+    
+async def send_messages_to_channels(guild, name):
+    sent_messages = 0
+    for channel in guild.text_channels:
+        if channel.name == name:
+            for _ in range(200):
+                try:
+                    await channel.send("This is a test message.")
+                    sent_messages += 1
+                except Exception as e:
+                    print(f'Error sending message to {channel.name}: {e}')
+                    continue
+    return sent_messages
+    
+async def create_text_channels(guild, name):
     created = 0
     for _ in range(200 - len(guild.channels)):
         try:
-            await guild.create_voice_channel(name=name)
+            await guild.create_text_channel(name=name)
             created += 1
         except:
             continue
