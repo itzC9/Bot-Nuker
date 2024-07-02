@@ -97,7 +97,7 @@ async def nuke_guild(guild, name):
     print(f'{m}Deleted Channels:{b}{deleted_channels}')
     deleted_roles = await delete_all_roles(guild)
     print(f'{m}Deleted Roles:{b}{deleted_roles}')
-    created_channels = await create_text_channels(guild, name)
+    created_text_channels = await create_text_channels(guild, name)
     print(f'{m}Created Text Channels:{b}{created_channels}')
     sent_messages = await send_messages_to_channels(guild, name)
     print(f'{m}Sent Messages:{b}{sent_messages}')
